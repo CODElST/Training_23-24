@@ -1,9 +1,11 @@
 import * as React from 'react'
 
 import * as types from 'notion-types'
+import { Button, Text } from '@mantine/core'
 import { IoMoonSharp } from '@react-icons/all-files/io5/IoMoonSharp'
 import { IoSunnyOutline } from '@react-icons/all-files/io5/IoSunnyOutline'
 import cs from 'classnames'
+import { signOut, useSession } from 'next-auth/react'
 import { Breadcrumbs, Header, Search, useNotionContext } from 'react-notion-x'
 
 import { isSearchEnabled, navigationLinks, navigationStyle } from '@/lib/config'
@@ -42,45 +44,25 @@ export const NotionPageHeader: React.FC<{
     return <Header block={block} />
   }
 
+  const { data, status } = useSession()
+
   return (
     <header className='notion-header'>
       <div className='notion-nav-header'>
         <Breadcrumbs block={block} rootOnly={true} />
-
-        <div className='notion-nav-header-rhs breadcrumbs'>
-          {navigationLinks
-            ?.map((link, index) => {
-              if (!link.pageId && !link.url) {
-                return null
-              }
-
-              if (link.pageId) {
-                return (
-                  <components.PageLink
-                    href={mapPageUrl(link.pageId)}
-                    key={index}
-                    className={cs(styles.navLink, 'breadcrumb', 'button')}
-                  >
-                    {link.title}
-                  </components.PageLink>
-                )
-              } else {
-                return (
-                  <components.Link
-                    href={link.url}
-                    key={index}
-                    className={cs(styles.navLink, 'breadcrumb', 'button')}
-                  >
-                    {link.title}
-                  </components.Link>
-                )
-              }
-            })
-            .filter(Boolean)}
-
-          <ToggleThemeButton />
-
-          {isSearchEnabled && <Search block={block} title={null} />}
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: 10
+          }}
+        >
+          <Text fz='md'>Hi, {data?.user.name}!</Text>
+          <Button variant='outline' onClick={() => signOut()}>
+            Sign out
+          </Button>
         </div>
       </div>
     </header>

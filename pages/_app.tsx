@@ -6,6 +6,8 @@ import { useRouter } from 'next/router'
 import * as Fathom from 'fathom-client'
 // used for rendering equations (optional)
 import 'katex/dist/katex.min.css'
+import { Session } from 'next-auth'
+import { SessionProvider } from 'next-auth/react'
 import posthog from 'posthog-js'
 // used for code syntax highlighting (optional)
 import 'prismjs/themes/prism-coy.css'
@@ -32,7 +34,10 @@ if (!isServer) {
   bootstrap()
 }
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({
+  Component,
+  pageProps
+}: AppProps<{ session: Session }>) {
   const router = useRouter()
 
   React.useEffect(() => {
@@ -61,5 +66,9 @@ export default function App({ Component, pageProps }: AppProps) {
     }
   }, [router.events])
 
-  return <Component {...pageProps} />
+  return (
+    <SessionProvider session={pageProps.session}>
+      <Component {...pageProps} />
+    </SessionProvider>
+  )
 }

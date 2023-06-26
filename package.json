@@ -25,9 +25,12 @@
     "test:prettier": "prettier '**/*.{js,jsx,ts,tsx}' --check"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
     "@fisch0920/use-dark-mode": "^2.4.0",
     "@keyvhq/core": "^1.6.9",
     "@keyvhq/redis": "^1.6.10",
+    "@mantine/core": "^6.0.14",
+    "@mantine/hooks": "^6.0.14",
     "@react-icons/all-files": "^4.1.0",
     "@vercel/og": "^0.0.19",
     "classnames": "^2.3.1",
@@ -38,6 +41,7 @@
     "isomorphic-unfetch": "^3.1.0",
     "lqip-modern": "^1.2.0",
     "next": "^12.3.1",
+    "next-auth": "^4.22.1",
     "notion-client": "^6.15.6",
     "notion-types": "^6.15.6",
     "notion-utils": "^6.15.6",
