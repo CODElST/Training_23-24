@@ -1,12 +1,9 @@
 import Image from 'next/image'
 import React from 'react'
 
-import { BackgroundImage, Button, Title, createStyles } from '@mantine/core'
+import { Button, Title, createStyles } from '@mantine/core'
 import { signIn, signOut, useSession } from 'next-auth/react'
 
-// import { GoogleLogin } from '@react-oauth/google'
-// import { Link } from 'react-router-dom'
-import BG from '../media/bg.jpg'
 import logo from '../media/logo.png'
 
 const useStyles = createStyles((theme) => ({

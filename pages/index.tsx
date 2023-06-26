@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { signIn, signOut, useSession } from 'next-auth/react'
+import { useSession } from 'next-auth/react'
 
 import { NotionPage } from '@/components/NotionPage'
 import { domain } from '@/lib/config'
