@@ -1,6 +1,7 @@
 // global styles shared across the entire site
 import * as React from 'react'
 import type { AppProps } from 'next/app'
+import Head from 'next/head'
 import { useRouter } from 'next/router'
 
 import * as Fathom from 'fathom-client'
@@ -68,6 +69,9 @@ export default function App({
 
   return (
     <SessionProvider session={pageProps.session}>
+      <Head>
+        <title>Project Delphi</title>
+      </Head>
       <Component {...pageProps} />
     </SessionProvider>
   )

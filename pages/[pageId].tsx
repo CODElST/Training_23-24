@@ -1,5 +1,8 @@
 import * as React from 'react'
 import { GetStaticProps } from 'next'
+import { useRouter } from 'next/router'
+
+import { useSession } from 'next-auth/react'
 
 import { NotionPage } from '@/components/NotionPage'
 import { domain, isDev } from '@/lib/config'
@@ -50,5 +53,10 @@ export async function getStaticPaths() {
 }
 
 export default function NotionDomainDynamicPage(props) {
+  const { status } = useSession()
+  const router = useRouter()
+  if (status === 'unauthenticated') {
+    router.push('/')
+  }
   return <NotionPage {...props} />
 }
