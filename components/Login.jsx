@@ -110,7 +110,7 @@ function Login() {
         </Title>
         {session &&
         session.user &&
-        session.user.email.slice(10) == 'hyderabad.bits-pilani.ac.in' ? (
+        session.user.email.slice(-28) == '@hyderabad.bits-pilani.ac.in' ? (
           <Button onClick={() => signOut()}>Sign out</Button>
         ) : (
           <Button onClick={() => signIn('google')}>BITS Mail Login</Button>

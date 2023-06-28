@@ -21,12 +21,13 @@ export const getStaticProps = async () => {
     throw err
   }
 }
+// h20221030079@hyderabad.bits-pilani.ac.in
 
 export default function NotionDomainPage(props) {
   const { data, status } = useSession()
   if (
     status === 'authenticated' &&
-    data.user.email.slice(10) == 'hyderabad.bits-pilani.ac.in'
+    data.user.email.slice(-28) == '@hyderabad.bits-pilani.ac.in'
   ) {
     return (
       <>
